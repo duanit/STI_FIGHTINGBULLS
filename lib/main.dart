@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       
-      title: 'Smart Dashboard - Admin Panel v0.1 ',
+      title: 'สนามกีฬาชนโค ทุ่งทะเลหลวงสุโขทัย',
       theme: ThemeData.dark().copyWith(
         appBarTheme: AppBarTheme(backgroundColor: bgColor, elevation: 0),
         scaffoldBackgroundColor: bgColor,
