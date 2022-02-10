@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sti_fightingbulls/core/constants/color_constants.dart';
 import 'package:sti_fightingbulls/core/widgets/app_button_widget.dart';
 import 'package:sti_fightingbulls/core/widgets/input_widget.dart';
@@ -7,6 +9,7 @@ import 'package:sti_fightingbulls/dao/messageuser_dao.dart';
 import 'package:sti_fightingbulls/screens/home/home_screen.dart';
 import 'package:sti_fightingbulls/screens/login/components/slider_widget.dart';
 import 'package:sti_fightingbulls/service/user_service.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class Login extends StatefulWidget {
   Login({required this.title});
@@ -26,6 +29,9 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   var _isMoved = false;
 
   bool isChecked = false;
+  FocusNode myFocusNode = FocusNode();
+  FocusNode buttonFocusNode = FocusNode();
+  TextEditingController myController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -44,6 +50,22 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // var SliderWidget ; 
+    // if (defaultTargetPlatform == TargetPlatform.windows) {
+    //          SliderWidget = Container(
+    //             height: MediaQuery.of(context).size.height,
+    //             width: MediaQuery.of(context).size.width / 2,
+    //             color: Colors.white,
+    //             child: SliderWidget(),
+    //           );
+    //            }else{
+    //              SliderWidget = Container(
+    //             height: 0,
+    //             width: MediaQuery.of(context).size.width / 2,
+    //             color: Colors.white,
+    //             child: null,
+    //           );
+    //            }
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -271,6 +293,31 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // ElevatedButton.icon(
+            //   icon: Icon(
+            //     Icons.fit_screen_sharp,
+            //     color: Colors.black,
+            //     size: 24.0,
+            //   ),
+            //   label: Text('แสกน'),
+            //   onPressed: () async {
+            //     //   Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ScanQR()));
+            //     String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+            //         "#ff6666", "Cancel", false, ScanMode.DEFAULT);
+            //     print(barcodeScanRes);
+            //     //                             	setState(() {
+            //     // 	qrCodeResult = barcodeScanRes;
+            //     // });
+            //   },
+            //   style: ElevatedButton.styleFrom(
+            //     //   primary: AppColors.cspaybutton, // background
+            //     onPrimary: Colors.black,
+
+            //     shape: new RoundedRectangleBorder(
+            //       borderRadius: new BorderRadius.circular(8.0),
+            //     ),
+            //   ),
+            // ),
             InputWidget(
               keyboardType: TextInputType.emailAddress,
               onSaved: (String? value) {
@@ -300,6 +347,102 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
               onSaved: (String? uPassword) {},
               onChanged: (String? value) {},
               validator: (String? value) {},
+              
+            ),
+            SizedBox(
+              height: 50.0,
+            ),
+            TextField(
+              // The second TextField is focused
+              // on when a user taps the second button
+              autofocus: true,
+              focusNode: myFocusNode,
+              controller: myController,
+              decoration: InputDecoration(
+                labelText: "Second",
+                labelStyle: TextStyle(fontSize: 25.0),
+              ),
+              // onTap: () async {
+              //   String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+              //       "#ff6666", "Cancel", false, ScanMode.DEFAULT);
+              //   print(barcodeScanRes);
+              //   //                             	setState(() {
+              //   // 	qrCodeResult = barcodeScanRes;
+              //   // });
+              // },
+              onChanged: (value) async {
+                String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+                    "#ff6666", "Cancel", false, ScanMode.DEFAULT);
+                print(barcodeScanRes);
+              },
+              onSubmitted: (value) async {
+                myFocusNode.requestFocus();
+                // myController.clear();
+
+                bool result = await showDialog(
+                  context: context,
+                  builder: (context) {
+                    return RawKeyboardListener(
+// its better to initialize and dispose of the focus node only for this alert dialog
+                      focusNode: FocusNode(),
+                      autofocus: true,
+                      onKey: (v) {
+                        print(FocusNode().hasFocus);
+                        if (v.logicalKey == LogicalKeyboardKey.enter) {
+                          //  // _deleteFloorplan(index);
+                          // Navigator.pop(context);
+
+                          FocusScope.of(context).nextFocus();
+                        }
+                      },
+                      child: AlertDialog(
+                        title: Text('Confirmation'),
+                        content: Text('Do you want to save?'),
+                        actions: <Widget>[
+                          // new FlatButton(
+                          //   onPressed: () {
+                          //     Navigator.of(context, rootNavigator: true).pop(
+                          //         false); // dismisses only the dialog and returns false
+                          //   },
+                          //   child: Text('No'),
+                          // ),
+                          FlatButton(
+                            autofocus: true,
+                            focusNode: buttonFocusNode,
+                            onPressed: () {
+                              print("......mm.......");
+                              print(myController.text);
+                              print(".....m........");
+                              myController.clear();
+                              Navigator.of(context, rootNavigator: true).pop(
+                                  true); // dismisses only the dialog and returns true
+                            },
+                            child: Text('Close'),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+
+                if (result) {
+                  print("..........");
+                  print(result);
+
+                  // Navigator.of(context).pop(_myObject);
+//   if (missingvalue) {
+//     Scaffold.of(context).showSnackBar(new SnackBar(
+//       content: new Text('Missing Value'),
+//     ));
+//   } else {
+//     saveObject();
+//     Navigator.of(context).pop(_myObject); // dismisses the entire widget
+//   }
+// } else {
+//   Navigator.of(context).pop(_myObject); // dismisses the entire widget
+                }
+              },
+              onEditingComplete: () async {},
             ),
             SizedBox(height: 24.0),
             AppButton(
@@ -307,17 +450,18 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
               text: "Sign In",
               onPressed: () {
                 Future<MessageUserDao> msg = UserService.randomDog();
-                msg.then((data) => {
-                  print(data.message),
-                  if(data.status == "success"){
-                    Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                )
-                 }
-                   
+                msg.then(
+                  (data) => {
+                    print(data.message),
+                    if (data.status == "success")
+                      {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        )
+                      }
                   },
-                  );
+                );
                 //UserService.randomDog();
                 //   FutureBuilder<MessageUserDao>(
                 // future: UserService.randomDog(),
@@ -334,7 +478,6 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                 //   // }
                 //   return CircularProgressIndicator();
                 // });
-               
               },
             ),
             SizedBox(height: 24.0),

@@ -1,9 +1,13 @@
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sti_fightingbulls/core/constants/color_constants.dart';
 import 'package:sti_fightingbulls/core/init/provider_list.dart';
+import 'package:sti_fightingbulls/screens/dashboard/components/mainpage.dart';
+import 'package:sti_fightingbulls/screens/dashboard/components/recent_users%20copy.dart';
+import 'package:sti_fightingbulls/screens/login/login_create_ticket.dart';
 import 'package:sti_fightingbulls/screens/login/login_screen.dart';
 
 void main() {
@@ -24,6 +28,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var pagemain ;
+    if (defaultTargetPlatform == TargetPlatform.windows) {
+     // pagemain = CodeUnlock();
+      // pagemain = LoginCreateTicket();
+    pagemain = Mainpage();
+   //  pagemain = Login(title: "Wellcome to the Admin & Dashboard Panel");
+    }else{
+      pagemain = Mainpage();
+     // pagemain = Login(title: "Wellcome to the Admin & Dashboard Panel");
+    }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       
@@ -38,7 +52,7 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
-      home: Login(title: "Wellcome to the Admin & Dashboard Panel"),
+      home: pagemain,
     );
   }
 }
