@@ -6,6 +6,7 @@ import 'package:sti_fightingbulls/models/recent_user_model.dart';
 import 'package:sti_fightingbulls/screens/login/login_create_ticket.dart';
 import 'package:sti_fightingbulls/screens/login/login_screen.dart';
 import 'dart:ui' as ui;
+import 'package:url_launcher/url_launcher.dart';
 
 class Mainpage extends StatelessWidget {
   Mainpage({
@@ -92,11 +93,20 @@ class Content extends StatelessWidget {
     //   "color": bgColor
 
     // },
-    {"title": "ปริ้นตั๋ว", "color": primaryColor,"page":Login(title: "Wellcome to the Admin & Dashboard Panel")},
-    {"title": "ขายตั๋ว", "color": greenColor,"page":LoginCreateTicket()},
-    {"title": "ระบบหลับบ้าน", "color": darkgreenColor,"page":Login(title: "Wellcome to the Admin & Dashboard Panel")},
-    {"title": "แสกนบัตรผ่านประตู", "color": Colors.amber,"page":Login(title: "Wellcome to the Admin & Dashboard Panel")}
+    {"title": "ปริ้นตั๋ว", "color": primaryColor, "page": "printticket"},
+    {"title": "ขายตั๋ว", "color": greenColor, "page": LoginCreateTicket()},
+    {
+      "title": "ระบบหลับบ้าน",
+      "color": darkgreenColor,
+      "page": Login(title: "Wellcome to the Admin & Dashboard Panel")
+    },
+    {
+      "title": "แสกนบัตรผ่านประตู",
+      "color": Colors.amber,
+      "page": Login(title: "Wellcome to the Admin & Dashboard Panel")
+    }
   ];
+
   @override
   Widget build(context) => GridView.builder(
         itemCount: elements.length,
@@ -110,38 +120,51 @@ class Content extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18),
           ),
-          child:     InkWell( 
-            onTap: () {
-              Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => elements[i]["page"]),
-                        );
+          child: InkWell(
+            onTap: () async {
+              if (elements[i]["page"] == "printticket") {
+               String url = 'http://202.129.16.74:7780/';
+                  if (await canLaunch(url)) {
+                    await launch(
+                      url,
+                      forceSafariVC: true,
+                      forceWebView: true,
+                      webOnlyWindowName: '_self',
+                    );
+                  } else {
+                    throw 'Could not launch ';
+                  }
+              
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => elements[i]["page"]),
+                );
+              }
             },
             child: Center(
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                elements[i]["title"],
-                textAlign: TextAlign.center,
-                style: TextStyle(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  elements[i]["title"],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
                     fontSize: 25,
                     foreground: Paint()
                       ..shader = ui.Gradient.linear(
                         const Offset(0, 120),
                         const Offset(0, 30),
                         <Color>[
-                           Colors.white,
-                           Colors.white,
-                         //elements[i]["color"],
-                         
+                          Colors.white,
+                          Colors.white,
+                          //elements[i]["color"],
                         ],
                       ),
-                      ),
+                  ),
+                ),
               ),
             ),
           ),
-          
-        ),
         ),
       );
 }
