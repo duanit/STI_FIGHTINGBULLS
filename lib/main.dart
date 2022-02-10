@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:sti_fightingbulls/core/constants/color_constants.dart';
 import 'package:sti_fightingbulls/core/init/provider_list.dart';
 import 'package:sti_fightingbulls/screens/dashboard/components/mainpage.dart';
-import 'package:sti_fightingbulls/screens/dashboard/components/recent_users%20copy.dart';
+import 'package:sti_fightingbulls/screens/dashboard/components/buy_ticket.dart';
 import 'package:sti_fightingbulls/screens/login/login_create_ticket.dart';
 import 'package:sti_fightingbulls/screens/login/login_screen.dart';
 

@@ -135,8 +135,13 @@ class Content extends StatelessWidget {
                     throw 'Could not launch ';
                   }
               
-              } else {
-                Navigator.push(
+              // } else if (elements[i]["page"] == "printticket") {
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => elements[i]["page"]),
+              //   );
+              }else{
+                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => elements[i]["page"]),
                 );

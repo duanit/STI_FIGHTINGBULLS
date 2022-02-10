@@ -5,8 +5,8 @@ import 'package:sti_fightingbulls/core/constants/color_constants.dart';
 import 'package:sti_fightingbulls/core/utils/colorful_tag.dart';
 import 'package:sti_fightingbulls/models/recent_user_model.dart';
 
-class RecentUsers extends StatelessWidget {
-  const RecentUsers({
+class BuyTicket extends StatelessWidget {
+  const BuyTicket({
     Key? key,
   }) : super(key: key);
 

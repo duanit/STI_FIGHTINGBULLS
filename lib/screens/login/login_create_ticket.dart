@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sti_fightingbulls/core/constants/color_constants.dart';
 import 'package:sti_fightingbulls/dao/messageuser_dao.dart';
+import 'package:sti_fightingbulls/screens/dashboard/components/buy_ticket.dart';
+import 'package:sti_fightingbulls/screens/dashboard/components/recent_users.dart';
 import 'package:sti_fightingbulls/screens/home/home_screen.dart';
 import 'package:sti_fightingbulls/service/user_service.dart';
 // import 'package:sti_fightingbulls/core/constants/color_constants.dart';
@@ -150,7 +152,7 @@ class Content extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => HomeScreen()),
+                                        builder: (context) => BuyTicket()),
                                   )
                                 }
                             },
