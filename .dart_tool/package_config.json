@@ -81,7 +81,7 @@
     },
     {
       "name": "fl_chart",
-      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/fl_chart-0.41.0",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/fl_chart-0.45.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -94,6 +94,12 @@
     {
       "name": "flutter_barcode_scanner",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_barcode_scanner-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_form_builder",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_form_builder-7.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -345,7 +351,7 @@
     },
     {
       "name": "url_launcher",
-      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.0.18",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.0.20",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -363,13 +369,13 @@
     },
     {
       "name": "url_launcher_linux",
-      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-2.0.3",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-3.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "url_launcher_macos",
-      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-2.0.3",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-3.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -387,7 +393,7 @@
     },
     {
       "name": "url_launcher_windows",
-      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-2.0.2",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-3.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -446,7 +452,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-02-10T11:23:56.658770Z",
+  "generated": "2022-02-14T12:48:59.686428Z",
   "generator": "pub",
   "generatorVersion": "2.15.1"
 }
